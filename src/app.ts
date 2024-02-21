@@ -6,7 +6,9 @@ import { DB, PORT } from "./config";
 
 const app = express();
 
-app.use("/example", exampleRoute);
+app.use(express.json());
+
+app.use("/", exampleRoute);
 
 app.use(() => {
   throw createHttpError(404, "Not Found");

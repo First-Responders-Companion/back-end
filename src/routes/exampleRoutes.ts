@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { getExample } from "../controllers/exampleControllers";
+import { getExample, getExampleData } from "../controllers/exampleControllers";
 
 const router = Router();
 
-router.get("/1", getExample);
+router.get("/", getExample);
+router.post("/", getExampleData);
 
 export default router;
