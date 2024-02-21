@@ -1,11 +1,12 @@
 import express, { ErrorRequestHandler } from "express";
 import createHttpError from "http-errors";
+import exampleRoute from "./routes/exampleRoutes";
+import mongoose from "mongoose";
+import { DB, PORT } from "./config";
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.json({ message: "Hello World" });
-});
+app.use("/example", exampleRoute);
 
 app.use(() => {
   throw createHttpError(404, "Not Found");
@@ -24,6 +25,14 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
 
 app.use(errorHandler);
 
-app.listen(9000, () => {
-  console.log("Server is running on port 9000");
-});
+mongoose
+  .connect(DB)
+  .then(() => {
+    console.log("Connected to DB");
+    app.listen(PORT, () => {
+      console.log(`Listening on PORT ${PORT}`);
+    });
+  })
+  .catch(() => {
+    throw createHttpError(501, "Unable to connect database");
+  });
