@@ -6,7 +6,7 @@ export const getExample: RequestHandler = (req, res, next) => {
   res.json({ message: "Hello World" });
 };
 
-export const getExampleData: RequestHandler = async (req, res, next) => {
+export const postExampleData: RequestHandler = async (req, res, next) => {
   const { name, id }: IExampleData = req.body;
 
   try {

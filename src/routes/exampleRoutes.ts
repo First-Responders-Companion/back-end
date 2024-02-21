@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getExample, getExampleData } from "../controllers/exampleControllers";
+import { getExample, postExampleData } from "../controllers/exampleControllers";
 
 const router = Router();
 
 router.get("/", getExample);
-router.post("/", getExampleData);
+router.post("/", postExampleData);
 
 export default router;
