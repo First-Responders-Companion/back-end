@@ -1,6 +1,6 @@
 import express, { ErrorRequestHandler } from "express";
 import createHttpError from "http-errors";
-import exampleRoute from "./routes/exampleRoutes";
+import router from "./routes";
 import mongoose from "mongoose";
 import { DB, PORT } from "./config";
 import { errorHandler } from "./middleware/errorHandler";
@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use(morgan("tiny"));
 
-app.use("/", exampleRoute);
+app.use("/api", router);
 
 app.use(() => {
   throw createHttpError(404, "Not Found");
