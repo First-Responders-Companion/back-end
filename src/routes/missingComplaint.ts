@@ -31,14 +31,14 @@ export default Router()
           missingComplaintId
         );
       response.status(200).send(missingComplaint);
-    } catch ({ message }) {
+    } catch (error: any) {
       if (
-        message ===
+        error.message ===
         "Police officer not assigned to this missing complaint, cannot close the case"
       ) {
-        response.status(403).send(message);
+        response.status(403).send(error.message);
       } else {
-        response.status(400).send(message);
+        response.status(400).send(error.message);
       }
     }
   })
