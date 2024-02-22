@@ -6,4 +6,4 @@
 2. Navigate to the cloned repository.
 3. Install the required npm packages using the command: `npm i`.
 4. Run the application: `npm run dev`.
-5. 
+   
