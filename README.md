@@ -9,6 +9,6 @@
 
 **Note**: Before running the project, instantiate a .env file inside the src directory that has PORT and MongoDB URI information. Something like this:
 ```
-DB = mongodb+srv://sgunturi:sgunturi@cluster0.nnagz1h.mongodb.net/test?retryWrites=true&w=majority
+DB = mongodb+srv://<username>:<password>@cluster0.nnagz1h.mongodb.net/test?retryWrites=true&w=majority
 PORT = 3001
 ```
