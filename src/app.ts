@@ -5,8 +5,16 @@ import mongoose from "mongoose";
 import { DB, PORT } from "./config";
 import { errorHandler } from "./middleware/errorHandler";
 import morgan from "morgan";
+import cors from "cors";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  })
+);
 
 app.use(express.json());
 
