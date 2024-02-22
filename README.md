@@ -6,3 +6,9 @@
 3. Navigate to the cloned repository.
 4. Install the required npm packages using the command: `npm i`.
 5. Run the application: `npm run dev`.
+
+**Note**: Before running the project, instantiate a .env file inside the src directory that has PORT and MongoDB URI information. Something like this:
+```
+DB = mongodb+srv://sgunturi:sgunturi@cluster0.nnagz1h.mongodb.net/test?retryWrites=true&w=majority
+PORT = 3001
+```
