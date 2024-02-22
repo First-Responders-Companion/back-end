@@ -48,6 +48,15 @@ class UserController {
 
     throw new Error(`User "${username}" does not exist or incorrect password`);
   }
+
+  /**
+   * List all users with their online/office status
+   */
+  async listUsers() {
+    const users = await User.find({ username: { $ne: "System" } }).exec();
+
+    return users;
+  }
 }
 
 export default new UserController();

@@ -59,25 +59,7 @@ class MissingComplaintController {
     return newMissingComplaint;
   };
 
-  closeMissingComplaint = async (
-    missingComplaintId: Types.ObjectId,
-    caseConclusionData: any
-  ) => {
-    const {
-      missingCitizenUsername,
-      caseConclusion,
-      caseClosedAt,
-      assignedToId,
-    } = caseConclusionData;
-
-    const missingCitizen = await User.findOne({
-      username: missingCitizenUsername,
-    });
-
-    if (!missingCitizen) {
-      throw new Error("Missing citizen not found");
-    }
-
+  closeMissingComplaint = async (missingComplaintId: Types.ObjectId) => {
     const missingComplaint = await MissingComplaint.findById(
       missingComplaintId
     );
@@ -85,17 +67,6 @@ class MissingComplaintController {
       throw new Error("Missing complaint not found");
     }
 
-    if (
-      assignedToId.toString() !== missingComplaint?.assignedTo._id.toString()
-    ) {
-      throw new Error(
-        "Police officer not assigned to this missing complaint, cannot close the case"
-      );
-    }
-
-    missingComplaint.missingCitizen = missingCitizen._id;
-    missingComplaint.caseConclusion = caseConclusion;
-    missingComplaint.caseClosedAt = caseClosedAt;
     missingComplaint.isCaseClosed = true;
 
     const updatedMissingComplaint = await missingComplaint.save();
